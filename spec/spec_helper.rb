@@ -3,6 +3,9 @@ if ENV['COVERAGE']
   Coveralls.wear!
 end
 
+require File.expand_path("dummy/config/environment.rb",  __FILE__)
+require "rails/test_help"
+
 require 'vestal_versions'
 
 require 'bundler'
@@ -26,3 +29,9 @@ RSpec.configure do |c|
 end
 
 Dir[File.expand_path('../support/*.rb', __FILE__)].each{|f| require f }
+
+#ENV["RAILS_ENV"] = "test"
+
+
+#Rails.backtrace_cleaner.remove_silencers!
+
