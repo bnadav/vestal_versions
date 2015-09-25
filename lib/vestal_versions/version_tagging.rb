@@ -24,11 +24,19 @@ module VestalVersions
 
   # Instance methods included into VestalVersions::Version to enable version tagging.
   module VersionMethods
-    extend ActiveSupport::Concern
+    #!!extend ActiveSupport::Concern
 
-    included do
-      validates_uniqueness_of :tag, :scope => [:versioned_id, :versioned_type], :if => :validate_tags?
+    #!!included do
+    #!!  validates_uniqueness_of :tag, :scope => [:versioned_id, :versioned_type], :if => :validate_tags?
+    #!!end
+
+    #!!
+    def self.included(base)
+      base.class_eval do 
+        validates_uniqueness_of :tag, :scope => [:versioned_id, :versioned_type], :if => :validate_tags?
+      end
     end
+    #!!
 
     # Attaches the given string to the version tag column. If the uniqueness validation fails,
     # nil is returned. Otherwise, the given string is returned.
