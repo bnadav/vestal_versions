@@ -47,6 +47,7 @@ module VestalVersions
   autoload :VersionTagging
   autoload :Versioned
   autoload :Versions
+  autoload :Associations
 
   class << self
     delegate :config, :configure, :to => Version
@@ -116,6 +117,7 @@ module VestalVersions
       include VersionTagging
       include Reload
       include Deletion
+      include Associations
 
       prepare_versioned_options(options)
       has_many :versions, options, &block
